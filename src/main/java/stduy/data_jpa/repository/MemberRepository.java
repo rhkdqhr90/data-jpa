@@ -2,8 +2,6 @@ package stduy.data_jpa.repository;
 
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.QueryHint;
-import org.hibernate.annotations.NamedQuery;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -65,6 +63,8 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
 
     @Lock(LockModeType.PESSIMISTIC_READ)
     List<Member> findLockByUsername(String username);
+
+    <T> List<T> findProjectionsByUsername(@Param("username")String username,Class<T> type);
 
 
 }
